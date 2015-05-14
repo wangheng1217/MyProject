@@ -1,0 +1,86 @@
+Second round list:
+
+
+
+java API:
+
+Character.toLowerCase(c), Character.isLetter(c), Character.isDigit(c)
+
+Arrays.sort()
+Arrays.asList() Arrays.asList("Larry", "Moe", "Curly");
+Arrays.equals([], []); Arrays.deepEquals([], []);
+List.toArray() returns Object[]
+String[] patterns = pList.toArray(new String[pList.size()]);
+HashMap<String, String>[] maps = new HashMap[9];
+
+StringBuilder.reverse().toString();
+
+
+java.util.Stack<E> extends Vector<E> extends AbstractList<E> implements List<E>, RandomAccess, Cloneable, java.io.Serializable
+
+java.util.LinkedList<E> extends AbstractSequentialList<E> implements List<E>, Deque<E>, Cloneable, java.io.Serializable
+
+Min-heap: PriorityQueue<ListNode> heap = new PriorityQueue<ListNode>(lists.size(), comparator);
+    -- find top K items from array of N, can be done by heap in O(NlogK), heap size is K.
+
+Comparator
+Math.max()
+Math.min()
+Math.abs()
+
+Comparator c = String.CASE_INSENSITIVE_ORDER;
+
+
+problem:
+linked list ring
+
+algorithm:
+
+DP:
+DistinctSubsequencesSolution
+    - when using 1-d array to represent 2-d array, CANNOT directly copy the array!
+    - for (int j = 0; j < T.length(); j++) preRow[j] = currRow[j];
+RegMatchSolution
+Palindrome Partitioning II : when DP, think about line-by-line first, rather than diagonal(dui jiao xian)
+
+Greedy:
+ContainerWithMostWater
+
+DFS -> stack (sometimes need to push the same object twice if need to reset something when traversed second time, like intList, visited[][])
+    - find whether these is a solution or not
+    - find all solutions
+BFS -> queue
+    - find a shortest solution, or all shortest solution (there might be multiple shortest solution) (Word Ladder I/II)
+It is not correct to say iterative is better, but in a real interview, it is better for you to know how to solve this problem in both ways.
+
+
+Typo:
+else, isEmpty, length
+
+Hard List:
+Word Ladder II
+Median of Two Sorted Arrays
+Max Points on a Line
+
+
+To Remember:
+Convert Sorted List to Binary Search Tree
+
+
+LinkedList questions: (a lot of easy bugs in 2nd round of linked list)
+1. create a dummy node as the pre node of head
+2. REMEMBER to handle the tail node, point tail.next to null when needed.
+
+
+Math problems:
+REMEMBER to check ANY possible overflow, change int to long if needed.
+1<<31 will overflow to -2^31, but 1L<<31 is fine.
+    possible cases that overflow could happen:
+    - (int n); n = -n;
+    -   int e = 1;  // this may cause infinite loop, since e << 1 may overflow. use long instead.
+        while (e <= n) {
+            list.add(x);
+            x = x*x;
+            e = e << 1;
+        }
+    
