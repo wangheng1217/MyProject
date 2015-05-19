@@ -2,6 +2,24 @@ package wangheng.leetcode;
 
 // the same solution for II
 public class PopulatingNextRightPointersInEachNodeSolution {
+    public void connect2(TreeLinkNode root) {
+        TreeLinkNode node = root;
+        while (node != null) {
+            TreeLinkNode dummy = new TreeLinkNode(0), pre = dummy;
+            while (node != null) {
+                if (node.left != null) {
+                    pre.next = node.left;
+                    pre = pre.next;
+                }
+                if (node.right != null) {
+                    pre.next = node.right;
+                    pre = pre.next;
+                }
+                node = node.next;
+            }
+            node = dummy.next;
+        }
+    }
 
     public void connect(TreeLinkNode root) {
         TreeLinkNode node = root;

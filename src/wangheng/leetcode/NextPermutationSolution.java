@@ -1,6 +1,50 @@
 package wangheng.leetcode;
 
 public class NextPermutationSolution {
+    public void nextPermutation3(int[] nums) {
+        for (int i = nums.length-2; i >= 0; i--) {
+            if (nums[i] < nums[i+1]) {
+                replace(nums, i);
+                reverse(nums, i+1);
+                return;
+            }
+        }
+        
+        reverse(nums, 0);
+    }
+    
+    private void replace(int[] nums, int pos) {
+        for (int i = nums.length-1; i > pos; i--) {
+            if (nums[pos] < nums[i]) {
+                swap(nums, pos, i);
+                break;
+            }
+        }
+    }
+    
+    private void replace2(int[] nums, int pos) {
+        int l = pos+1, r = nums.length-1;
+        while (l < r) {
+            int mid = (l+r)/2;
+            if (nums[mid] > nums[pos] && nums[mid+1] <= nums[pos]) {
+                swap(nums, pos, mid);
+                return;
+            }
+            if (nums[mid] > nums[pos]) {
+                l = mid+1;
+            } else {
+                r = mid-1;
+            }
+        }
+        swap(nums, pos, l);
+    }
+   
+    private void reverse(int[] nums, int pos) {
+        for (int i = 0; pos+i < nums.length-1-i; i++) {
+            swap(nums, pos+i, nums.length-1-i);
+        }
+    }
+
     public void nextPermutation2(int[] num) {
         boolean found = false;
         for (int i = num.length-2; i >= 0; i--) {
