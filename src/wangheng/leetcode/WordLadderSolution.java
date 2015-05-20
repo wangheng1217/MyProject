@@ -12,6 +12,37 @@ import java.util.Set;
 
 //graph BFS (for optimal solution)
 public class WordLadderSolution {
+    public int ladderLength(String beginWord, String endWord, Set<String> wordDict) {
+        Set<String> visitedWords = new HashSet<String>();
+        Queue<String> queue = new LinkedList<String>();
+        queue.add(beginWord);
+        int length = 2;
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                String str = queue.poll();
+                char[] charArray = str.toCharArray();
+                
+                for (int j = 0; j < charArray.length; j++) {
+                    char oldC = charArray[j];
+                    for (char newC = 'a'; newC <= 'z'; newC++) {
+                        if (newC != oldC) {
+                            charArray[j] = newC;
+                            String newStr = new String(charArray);
+                            if (endWord.equals(newStr)) return length;
+                            if (wordDict.contains(newStr) && visitedWords.add(newStr)) {
+                                queue.add(newStr);
+                            }
+                        }
+                    }
+                    charArray[j] = oldC;
+                }
+            }
+            length++;
+        }
+        return 0;
+    }
+
     public int ladderLength5(String start, String end, HashSet<String> dict) {
         if (dict == null || dict.size() == 0) {
             return 0;

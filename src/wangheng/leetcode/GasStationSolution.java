@@ -1,6 +1,22 @@
 package wangheng.leetcode;
 
 public class GasStationSolution {
+    public int canCompleteCircuit0(int[] gas, int[] cost) {
+        int start = 0;
+        int needGas = 0, currGas = 0;
+        for (int i = 0; i < gas.length; i++) {
+            if (currGas + gas[i] >= cost[i]) {
+                currGas = currGas + gas[i] - cost[i];
+            } else {
+                needGas = needGas + cost[i] - currGas - gas[i];
+                currGas = 0;
+                start = i+1;
+            }
+        }
+        if (currGas >= needGas) return start;
+        else return -1;
+    }
+    
     public int canCompleteCircuit(int[] gas, int[] cost) {
         int sum = 0;
         int total = 0;
