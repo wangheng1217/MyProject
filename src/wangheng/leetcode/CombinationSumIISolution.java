@@ -2,8 +2,32 @@ package wangheng.leetcode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class CombinationSumIISolution {
+    
+    public List<List<Integer>> combinationSum2_0(int[] num, int target) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        Arrays.sort(num);
+        combinationSumHelper(num, target, 0, result, new ArrayList<Integer>());
+        return result;
+    }
+    
+    private void combinationSumHelper(int[] num, int target, int pos, List<List<Integer>> result, List<Integer> intList) {
+        if (target < 0 || (pos == num.length && target > 0)) return;
+        if (target == 0) {
+            result.add(new ArrayList<Integer>(intList));
+            return;
+        }
+        
+        intList.add(num[pos]);
+        combinationSumHelper(num, target-num[pos], pos+1, result, intList);
+        intList.remove(intList.size()-1);
+        
+        while (pos+1 < num.length && num[pos+1] == num[pos]) pos++;
+        combinationSumHelper(num, target, pos+1, result, intList);
+    }
+
 
     public static void main(String[] args) {
         int[] candidates = { 10, 1, 2, 7, 6, 1, 5 };

@@ -3,6 +3,35 @@ package wangheng.leetcode;
 import java.util.Stack;
 
 public class MaximalRectangleSolution {
+    public int maximalRectangle3(char[][] matrix) {
+        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) return 0;
+        
+        int[] height = new int[matrix[0].length];
+        int maxArea = 0;
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                if (matrix[i][j] == '0') height[j] = 0;
+                else height[j] = height[j] + 1;
+            }
+            maxArea = Math.max(maxArea, maxRect(height));
+        }
+        
+        return maxArea;
+    }
+    
+    private int maxRect(int[] height) {
+        Stack<Integer> stack = new Stack<Integer>();
+        int maxRect = 0;
+        for (int i = 0; i <= height.length; i++) {
+            while (!stack.isEmpty() && (i == height.length || height[i] < height[stack.peek()])) {
+                int h = height[stack.pop()];
+                int l = i - (stack.isEmpty() ? 0 : stack.peek() + 1);
+                maxRect = Math.max(maxRect, l*h);
+            }
+            stack.push(i);
+        }
+        return maxRect;           
+    }
     
     // use the LargestRectangleInHistogramSolution
     public int maximalRectangle2(char[][] matrix) {

@@ -1,6 +1,21 @@
 package wangheng.leetcode;
 
 public class InsertionSortListSolution {
+    public ListNode insertionSortList2(ListNode head) {
+        ListNode dummy = new ListNode(0);
+        ListNode node = head;
+        while (node != null) {
+            ListNode curr = dummy;
+            while (curr.next != null && curr.next.val <= node.val) curr = curr.next;
+            ListNode tmp = node.next;
+            node.next = curr.next;
+            curr.next = node;
+            node = tmp;
+        }
+            
+        return dummy.next;   
+    }
+    
     public ListNode insertionSortList(ListNode head) {
         if (head == null) return null;
         
