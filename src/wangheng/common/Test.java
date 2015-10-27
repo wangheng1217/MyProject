@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class Test {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 //        int i = 1;
 //        long l = 1;
 //        System.out.println(i<<30);
@@ -63,6 +63,66 @@ public class Test {
         
         String version = "1";
         System.out.println(version.split("\\.").length);
+        
+        int i = 0b10000000;
+        byte b = (byte)i;
+        System.out.println((int)b);
+        
+//        String[] s = new String[] { "123" };
+//        String clName = s.getClass().getName();
+//        Test.class.getClassLoader().loadClass(clName);
+        
+//        try {
+//            throw new A("Haha");
+//        } catch (Exception e) {
+//            try {
+//                throw new B(e);
+//            } catch (Exception bE) {
+//                bE.printStackTrace();
+//            }
+//        }
+        
+        System.out.println((2)%(-3)); 
+        
+        int[] test = new int[Integer.MAX_VALUE];
+//        System.out.println(test.length);
     }
+    
 
+}
+
+
+class Solution2 {
+    private final static Solution2 instance = new Solution2();
+    
+    /**
+     * @return: The same instance of this class every time
+     */
+    public static Solution2 getInstance() {
+        return instance;
+    }
+}
+
+class A extends Exception {
+    A(String message) {
+        super(message);
+    }
+}
+
+class B extends Exception {
+    B(Throwable cause) {
+        super(cause);
+    }
+}
+
+class Base {
+    protected void foo(){}
+}
+
+class Child extends Base {
+    public void foo(){III.foo();}
+}
+
+interface III {
+    public static void foo() {}
 }

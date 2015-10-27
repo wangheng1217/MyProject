@@ -15,6 +15,8 @@ HashMap<String, String>[] maps = new HashMap[9];
 
 StringBuilder.reverse().toString();
 
+Map.put(K, V) will return the previous value of the key.
+
 
 java.util.Stack<E> extends Vector<E> extends AbstractList<E> implements List<E>, RandomAccess, Cloneable, java.io.Serializable
 
@@ -22,6 +24,18 @@ java.util.LinkedList<E> extends AbstractSequentialList<E> implements List<E>, De
 
 Min-heap: PriorityQueue<ListNode> heap = new PriorityQueue<ListNode>(lists.size(), comparator);
     -- find top K items from array of N, can be done by heap in O(NlogK), heap size is K.
+
+LRU (LinkedHashMap) implementation in Leetcode.
+
+Trie implementation in Leetcode.
+
+Segment Tree implementation in Lintcode.
+    -- when to use Segment Tree: the values are limited to a given range, query for a particular range/interval
+    -- the start/end value could use either the value or the index
+    -- if the index pos matters in the solution, then start/end value has to use the index
+    -- 线段树并不适合所有区间查询情况，它的使用条件是“相邻的区间的信息可以被合并成两个区间的并区间的信息”。即问题是可以被分解解决的。
+    利用线段树，我们可以高效地询问和修改一个数列中某个区间的信息，并且代码也不算特别复杂。
+但是线段树也是有一定的局限性的，其中最明显的就是数列中数的个数必须固定，即不能添加或删除数列中的数。
 
 Comparator
 Math.max()
@@ -84,3 +98,11 @@ REMEMBER to check ANY possible overflow, change int to long if needed.
             e = e << 1;
         }
     
+    
+    
+Test case:
+举个例子，比如说是一个基于树的算法，他会问你怎么设计一个树用来测试，比如说特
+殊形状的树用来哎测试正确性，够大的树用来测试算法性能，等等
+还要考虑输入不合法的情况，比如说给你一个树，叶子节点没有指到null，程序会不会
+崩溃，还有叶子节点的指针又指到上面节点了，就是说根本不是一个树了，有回路，程
+序能不能handle，等等
