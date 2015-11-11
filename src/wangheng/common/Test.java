@@ -6,7 +6,20 @@ import java.util.Map;
 
 public class Test {
 
+    private static final int[] PRIMES = new int[]{2, 3, 5, 7, 11 ,13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71,
+            73, 79, 83, 89, 97, 101, 107};
+
+    private long hash(String s) {
+        long hash = 1;
+        for (int i = 0; i < s.length(); i++) {
+            hash *= PRIMES[s.charAt(i) - 'a'];
+        }
+        return hash;
+    }
+
     public static void main(String[] args) throws Exception {
+
+
 //        int i = 1;
 //        long l = 1;
 //        System.out.println(i<<30);
